@@ -1,0 +1,27 @@
+{
+  "name": "foodapp",
+  "version": "1.0.0",
+  "description": "Food App",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nagasai-174/FoodApp.git"
+  },
+  "keywords": [],
+  "author": "NAGASAI",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nagasai-174/FoodApp/issues"
+  },
+  "homepage": "https://github.com/nagasai-174/FoodApp#readme",
+  "devDependencies": {
+    "parcel": "^2.10.2",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
