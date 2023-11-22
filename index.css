@@ -61,3 +61,22 @@
     display: flex;
     flex-wrap: wrap;
 }
+.rating-btn{
+    margin-top: 10px;
+    border-radius:10px;
+    background-color: white;
+    padding: 5px;
+    border: 1px solid grey;
+    color: black;
+    cursor: pointer;
+}
+.del-time{
+    margin-top: 10px;
+    border-radius:10px;
+    background-color: white;
+    padding: 5px;
+    border: 1px solid grey;
+    color: black;
+    cursor: pointer;
+    margin-left: 10px;
+}
