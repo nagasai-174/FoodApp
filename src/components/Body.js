@@ -1,9 +1,19 @@
 import RestaurantCards from "./RestaurantCards";
-import resObj from "../utils/mockData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Shimmer from "./Shimmer";
 const Body = () => {
-  const [reslist,setReslist]=useState(resObj)
-    return (
+  const [reslist,setReslist]=useState([])
+  useEffect(()=>{fetchData()},
+  [])
+  const fetchData = async () => {
+const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.4426899&lng=78.3884872&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+const json = await data.json()
+console.log("json")
+setReslist(json.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
+?.restaurants)
+  }
+  
+    return reslist.length === 0 ? <Shimmer/> : (
       <div>
         <button className="rating-btn" 
         onClick={()=>{ 
