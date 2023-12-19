@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { LOGO_URL } from "../utils/common"
+import { useState } from "react";
 const Header = () => {
+  const [loginbtn , setLoginbtn] = useState("Login")
     return (
       <div className="header">
         <img
@@ -18,6 +20,18 @@ const Header = () => {
               </li>
             <li>
               <Link to="/contact">ContactUs</Link>
+              </li>
+              <li>
+                
+                <button 
+                className="loginbtn"
+                onClick={()=>
+                  loginbtn === "Login" ?
+                setLoginbtn("Logout") :
+                setLoginbtn("Login")
+                }>
+                  {loginbtn}
+                  </button>
               </li>
           </ul>
         </div>
