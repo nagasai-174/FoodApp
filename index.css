@@ -118,60 +118,48 @@
     padding: 10px;
   }
   
-  /* Style the menu item */
-  
-  .menu-item h3 {
-    color: #333;
-    font-size: 18px;
-  }
-  
-  /* Style the menu item description */
-  .menu-item p {
-    color: #777;
-    font-size: 14px;
-  }
-  
-  /* Style the menu item price */
-  .menu-item .price {
-    color: #ff6347;
-    font-size: 16px;
-    font-weight: bold;
-  }
-  /* Updated styles to place the image on the right side */
-.menu-item {
-    display: flex;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #ddd;
-    overflow: hidden;
-  }
-  
-  .menu-image {
-    width: 80px;
-    height: 80px;
-    margin-top: 25px;
-  }
-  
-  .menu-details {
-    flex-grow: 1;
-    padding: 10px;
-  }
-  
-  /* Rest of the existing CSS styles remain the same */
-  /* Style the buttons that are used to open and close the accordion panel */
-.accordion {
+  .accordion {
     background-color: #eee;
-    color: #444;
+    color: #333;
     cursor: pointer;
     padding: 18px;
     width: 100%;
     text-align: left;
-    border: none;
+    border: 1px solid #ccc;
     outline: none;
-    transition: 0.4s;
+    transition: background-color 0.3s;
   }
   
-  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-  .active, .accordion:hover {
-    background-color: #ccc;
+  .accordion.active,
+  .accordion:hover {
+    background-color: #ddd;
+  }
+  
+  .panel {
+    display: none;
+    padding: 0 18px;
+    background-color: white;
+    overflow: hidden;
+    
+  }
+  
+  .panel.show {
+    display: block;
+  }
+  
+  .menu-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .menu-details {
+    flex: 1;
+  }
+  
+  .menu-image {
+    max-width: 100px;
+    max-height: 100px;
   }
   

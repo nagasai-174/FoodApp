@@ -1,10 +1,16 @@
+import React from 'react';
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { MENU_IMG ,MENU_API} from "../utils/common";
 import { useParams } from "react-router-dom";
 const RestaurantMenu = () => {
   const [listmenu, setListmenu] = useState(null);
+  const [openAccordion, setOpenAccordion] = useState(null);
+  const [showData , SetShowData] = useState(false)
   const {resid} = useParams()
+  const handleAccordionClick = (index) => {
+    setOpenAccordion(openAccordion === index ? null : index);
+  };
   useEffect(() => {
     fetchData();
   }, []);
@@ -18,31 +24,41 @@ const RestaurantMenu = () => {
   };
   if (listmenu === null) return <Shimmer />;
   const { name, cuisines } = listmenu?.cards[0]?.card?.card?.info;
-  const { itemCards } =
-    listmenu?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[3]?.card
-      ?.card;
+  //  const { itemCards } =
+  //    listmenu?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[3]?.card
+  //     ?.card;
+      const {cards} = listmenu?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR;
   return (
     <div className="menu-container">
         <h1>{name}</h1>
       <p>{cuisines.join(",")}</p>
-      <h3  class="accordion">{ listmenu?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[3]?.card
-      ?.card?.title}</h3>
-      <div class="panel">
-      {itemCards?.map((item) => (
-      <div class="menu-item">
-      
-        <>
-      <div class="menu-details">
-      <h3>{item?.card?.info?.name}</h3>
-        <p>{item?.card?.info?.description}</p>
-        <p class="price">{item?.card?.info?.price/100}</p>
-      </div>
-      <img src={MENU_IMG+item?.card?.info?.imageId}  class="menu-image"/>
-      </>
-     
-    </div>
-     ))}
-     </div>
+      {cards?.map((item, index) => (
+        <React.Fragment key={index}>
+          <h3
+            className={`accordion ${index === openAccordion ? "active" : ""}`}
+            onClick={() => handleAccordionClick(index)}
+          >
+            {item?.card?.card?.title}
+          </h3>
+          <div className={`panel ${index === openAccordion ? "show" : ""}`}>
+            {Array.isArray(item?.card?.card?.itemCards) &&
+              item.card.card.itemCards.map((innerItem, innerIndex) => (
+                <div key={innerIndex} className="menu-item">
+                  <div className="menu-details">
+                    <h3>{innerItem?.card?.info?.name}</h3>
+                    <p>{innerItem?.card?.info?.description}</p>
+                    <p className="price">{innerItem?.card?.info?.price / 100}</p>
+                  </div>
+                  <img
+                    src={MENU_IMG + innerItem?.card?.info?.imageId}
+                    className="menu-image"
+                    alt={innerItem?.card?.info?.name}
+                  />
+                </div>
+              ))}
+          </div>
+        </React.Fragment>
+      ))}
     </div>
   );
 };
